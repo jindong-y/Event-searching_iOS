@@ -15,6 +15,13 @@
 		CAC8DBAB26310C4400DAEA3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC8DBA926310C4400DAEA3F /* LaunchScreen.storyboard */; };
 		CAC8DBB626310C4400DAEA3F /* CodeExerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8DBB526310C4400DAEA3F /* CodeExerciseTests.swift */; };
 		CAC8DBC126310C4400DAEA3F /* CodeExerciseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8DBC026310C4400DAEA3F /* CodeExerciseUITests.swift */; };
+		CAC8DBDC263634D400DAEA3F /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8DBDA263634D400DAEA3F /* ResultCell.swift */; };
+		CAC8DBDD263634D400DAEA3F /* ResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC8DBDB263634D400DAEA3F /* ResultCell.xib */; };
+		CAC8DBED263686C500DAEA3F /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8DBEC263686C500DAEA3F /* EventManager.swift */; };
+		CAC8DBF2263687DF00DAEA3F /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8DBF1263687DF00DAEA3F /* EventModel.swift */; };
+		CAC8DBFF2636A52F00DAEA3F /* EventResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8DBFE2636A52F00DAEA3F /* EventResponse.swift */; };
+		CAC8DC092636A7E600DAEA3F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8DC082636A7E600DAEA3F /* SearchViewController.swift */; };
+		CAC8DC112636B6EF00DAEA3F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8DC102636B6EF00DAEA3F /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +56,13 @@
 		CAC8DBBC26310C4400DAEA3F /* CodeExerciseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CodeExerciseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC8DBC026310C4400DAEA3F /* CodeExerciseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeExerciseUITests.swift; sourceTree = "<group>"; };
 		CAC8DBC226310C4400DAEA3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAC8DBDA263634D400DAEA3F /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
+		CAC8DBDB263634D400DAEA3F /* ResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultCell.xib; sourceTree = "<group>"; };
+		CAC8DBEC263686C500DAEA3F /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
+		CAC8DBF1263687DF00DAEA3F /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		CAC8DBFE2636A52F00DAEA3F /* EventResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventResponse.swift; sourceTree = "<group>"; };
+		CAC8DC082636A7E600DAEA3F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		CAC8DC102636B6EF00DAEA3F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +115,12 @@
 			children = (
 				CAC8DB9E26310C4000DAEA3F /* AppDelegate.swift */,
 				CAC8DBA026310C4000DAEA3F /* SceneDelegate.swift */,
-				CAC8DBA226310C4000DAEA3F /* ViewController.swift */,
-				CAC8DBA426310C4000DAEA3F /* Main.storyboard */,
+				CAC8DBD52636267500DAEA3F /* Model */,
+				CAC8DBD62636268E00DAEA3F /* View */,
+				CAC8DBD42636265B00DAEA3F /* Controller */,
 				CAC8DBA726310C4400DAEA3F /* Assets.xcassets */,
 				CAC8DBA926310C4400DAEA3F /* LaunchScreen.storyboard */,
+				CAC8DC102636B6EF00DAEA3F /* Constants.swift */,
 				CAC8DBAC26310C4400DAEA3F /* Info.plist */,
 			);
 			path = CodeExercise;
@@ -126,6 +142,35 @@
 				CAC8DBC226310C4400DAEA3F /* Info.plist */,
 			);
 			path = CodeExerciseUITests;
+			sourceTree = "<group>";
+		};
+		CAC8DBD42636265B00DAEA3F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CAC8DBA226310C4000DAEA3F /* ViewController.swift */,
+				CAC8DC082636A7E600DAEA3F /* SearchViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CAC8DBD52636267500DAEA3F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CAC8DBEC263686C500DAEA3F /* EventManager.swift */,
+				CAC8DBFE2636A52F00DAEA3F /* EventResponse.swift */,
+				CAC8DBF1263687DF00DAEA3F /* EventModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CAC8DBD62636268E00DAEA3F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CAC8DBA426310C4000DAEA3F /* Main.storyboard */,
+				CAC8DBDA263634D400DAEA3F /* ResultCell.swift */,
+				CAC8DBDB263634D400DAEA3F /* ResultCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +278,7 @@
 			files = (
 				CAC8DBAB26310C4400DAEA3F /* LaunchScreen.storyboard in Resources */,
 				CAC8DBA826310C4400DAEA3F /* Assets.xcassets in Resources */,
+				CAC8DBDD263634D400DAEA3F /* ResultCell.xib in Resources */,
 				CAC8DBA626310C4000DAEA3F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,9 +304,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAC8DBED263686C500DAEA3F /* EventManager.swift in Sources */,
 				CAC8DBA326310C4000DAEA3F /* ViewController.swift in Sources */,
+				CAC8DC092636A7E600DAEA3F /* SearchViewController.swift in Sources */,
 				CAC8DB9F26310C4000DAEA3F /* AppDelegate.swift in Sources */,
+				CAC8DBDC263634D400DAEA3F /* ResultCell.swift in Sources */,
+				CAC8DBFF2636A52F00DAEA3F /* EventResponse.swift in Sources */,
+				CAC8DBF2263687DF00DAEA3F /* EventModel.swift in Sources */,
 				CAC8DBA126310C4000DAEA3F /* SceneDelegate.swift in Sources */,
+				CAC8DC112636B6EF00DAEA3F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,7 +497,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.FetchRewards.CodeExercise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -463,7 +515,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.FetchRewards.CodeExercise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
