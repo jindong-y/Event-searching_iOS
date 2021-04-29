@@ -7,13 +7,11 @@
 
 import Foundation
 
-
+//MARK: A model for event array
 struct EventsModel {
     var events:[event]
-//    var favorites:[Int]
     
-    
-    
+    //initalize using eventJson
     init(events_response: [eventJson]) {
         events=events_response.map({ (eventJson) -> event in
             let dateString = eventJson.datetime_local
@@ -23,13 +21,7 @@ struct EventsModel {
             return event(title: eventJson.short_title, location: eventJson.venue.display_location, time: date!, ticketUrl: eventJson.url, id: eventJson.id,imageUrl: eventJson.performers[0].image)
         })
     }
-//    mutating func getEvent(of_index i:Int,eventsResponse:EventsResponse) {
-//        let event=eventsResponse.events[i]
-//        self.title=event.short_title;
-//        self.location=event.venue.display_location
-////        self.time=event.datetime_local
-//        self.ticketUrl=event.url
-//    }
+
     
 }
 

@@ -11,7 +11,6 @@ class SearchViewControll: UIViewController{
     
     
     @IBOutlet weak var searchBar: UISearchBar!
-    
     @IBOutlet weak var tableView: UITableView!
     
     var eventManager = EventManager()
@@ -24,26 +23,24 @@ class SearchViewControll: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        //set delegate
         searchBar.delegate=self
         tableView.delegate=self
         tableView.dataSource=self
         eventManager.delegate=self
         
-        if let dic=defaults.object(forKey: K.favoriteSetName) as? [String:Bool]{
-                favorites=dic
-        }
         
-        
-        
+        //register tableveiw cell
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdenifier)
+        //tableView auto sizing
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 150;
 
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        
+        //load favorites from user defaults
+        NSLog("Reload favorites and tableview")
         if let dic=defaults.object(forKey: K.favoriteSetName) as? [String:Bool]{
                 favorites=dic
         }
@@ -58,11 +55,12 @@ extension SearchViewControll:UITableViewDelegate{
     
     
     
-    
+    // load more data when scroll to the end
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         let offset = scrollView.contentOffset.y
         if !isLoadMore && offset >= scrollView.contentSize.height-scrollView.frame.height{
+            NSLog("Fetch new data")
             isLoadMore=true
             page+=1
             eventManager.fetchEvents(query: searchBar.text!, page: page)
@@ -72,23 +70,14 @@ extension SearchViewControll:UITableViewDelegate{
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        NSLog("Cell \(indexPath.row) is selected")
         selectedIndex=indexPath.row
         performSegue(withIdentifier: K.segue.searchToEvent, sender: self)
 
         
-        
-//        let cell=tableView.cellForRow(at: indexPath) as! ResultCell
-//        let selected=events[indexPath.row]
-//        let VC=EventViewController()
-//        VC.set(title: selected.title, imageUrl: selected.imageUrl, time: cell.timeLabel.text, location: selected.location)
-//
-//        VC.titleLabel.text=selected.title
-//        VC.imageView.load(urlString: selected.imageUrl)
-//        VC.timeLabel.text=cell.timeLabel.text
-//        VC.locationLabel.text=selected.location
-        
     }
     
+    // pass all parameters to EventView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier==K.segue.searchToEvent){
             
@@ -120,6 +109,7 @@ extension SearchViewControll: UITableViewDataSource{
         return events.count
     }
     
+    //set up cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdenifier, for: indexPath) as! ResultCell
         
@@ -129,15 +119,13 @@ extension SearchViewControll: UITableViewDataSource{
         cell.eventImageView.load(urlString: cur.imageUrl)
         cell.eventImageView.layer.cornerRadius=cell.eventImageView.frame.size.width/8
         //check if is favorited
-        
-        
         if favorites[String(cur.id)] ?? false {
-            cell.favoritMark.isHidden=false
+            cell.favoriteMark.isHidden=false
         }else{
-            cell.favoritMark.isHidden=true
+            cell.favoriteMark.isHidden=true
         }
 
-        
+        // formate time
         let date=events[indexPath.row].time
         let displayFormatter=DateFormatter()
         displayFormatter.dateFormat="EEEE, dd MMM yyyy \nhh:mm a"
@@ -145,8 +133,6 @@ extension SearchViewControll: UITableViewDataSource{
         
         return cell;
 
-        
-        
     }
     
     
@@ -156,8 +142,9 @@ extension SearchViewControll: UITableViewDataSource{
 
 extension SearchViewControll: EventManagerDelegete{
 
-    
+    //update var events after fetch
     func didUpdate(_ eventJson:[eventJson]){
+        NSLog("Did Update")
         DispatchQueue.main.async {
             //check if search or loadmore
             if(self.isLoadMore){
@@ -180,11 +167,12 @@ extension SearchViewControll: EventManagerDelegete{
 
 
 
-
+// MARK: SearchBar Delegate
 extension SearchViewControll: UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)
+        //inital page to 1
         self.page=1
         eventManager.fetchEvents(query: searchBar.text!, page: 1)
         
@@ -196,6 +184,7 @@ extension SearchViewControll: UISearchBarDelegate{
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
+        //inital page to 1
         self.page=1
         eventManager.fetchEvents(query: searchBar.text!, page: 1)
     }
@@ -206,7 +195,7 @@ extension SearchViewControll: UISearchBarDelegate{
 }
 
 
-
+// MARK: UIImage extension: load()
 extension UIImageView {
     func load(urlString : String) {
         guard let url = URL(string: urlString)else {

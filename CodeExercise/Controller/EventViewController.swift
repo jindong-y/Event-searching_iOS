@@ -8,13 +8,14 @@
 import UIKit
 import SafariServices
 class EventViewController: UIViewController {
-
+    
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     
     var eventName:String?
     var imageUrl:String?
@@ -25,50 +26,46 @@ class EventViewController: UIViewController {
     
     var isFavorite:Bool=false
     let defaults = UserDefaults.standard
+    var favorites:[String:Bool]=[:]
     
     
     @IBAction func buyTicket(_ sender: Any) {
+        NSLog("Buy ticket")
         let vc=SFSafariViewController(url: URL(string: url ?? "")!)
         present(vc, animated: true)
     }
     @IBAction func favoritePressed(_ sender: Any) {
-        
+        NSLog("Favorited status changes")
         isFavorite = !isFavorite
         updateFavorite()
-            
+        
         
     }
     @IBAction func goBack(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
     
-    var favorites:[String:Bool]=[:]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-//        if let d=defaults.object(forKey: K.favoriteSetName){
-//                set=d as! Set<Int>
-//        }
-        
-        defaults.dictionary(forKey: K.favoriteSetName)
-        
-        
+        if #available(iOS 13.0, *){
+        }else{
+            backButton.setImage(#imageLiteral(resourceName: "chevron_left"), for: .normal)
+        }
+        //Load favorites
         if let dic=defaults.dictionary(forKey: K.favoriteSetName) as? [String:Bool]{
             favorites=dic
         }
         
+        //initial isFavorite
         isFavorite=favorites[String(id!)] ?? false
-        
         updateFavorite()
         
-        
+        //set outlets
         titleLabel.text=eventName
         imageView.load(urlString: imageUrl!)
-        
         locationLabel.text=location
-    
         let displayFormatter=DateFormatter()
         displayFormatter.dateFormat="EEEE, dd MMM yyyy \nhh:mm a"
         if time != nil{
@@ -76,23 +73,31 @@ class EventViewController: UIViewController {
         }
     }
     
-    
+    //update favorite status of button and store in the dictionary
     func updateFavorite(){
+        NSLog("Update Favorite")
         if isFavorite {
-            favoriteButton.setImage(UIImage(systemName: K.img.favorite), for: .normal)
+            if #available(iOS 13.0, *) {
+                favoriteButton.setImage(UIImage(systemName: K.img.favorite), for: .normal)
+            } else {
+                // Fallback on earlier versions
+                favoriteButton.setImage(#imageLiteral(resourceName: "Heart Fill"), for: .normal)
+            }
             favorites[String(id!)]=true
         }else{
-            favoriteButton.setImage(UIImage(systemName:K.img.unfavorite ), for: .normal)
+            if #available(iOS 13.0, *) {
+                favoriteButton.setImage(UIImage(systemName:K.img.unfavorite ), for: .normal)
+            } else {
+                // Fallback on earlier versions
+                favoriteButton.setImage(#imageLiteral(resourceName: "Heart"), for: .normal)
+            }
             favorites[String(id!)]=nil
         }
-//        let test:Set=[1,0]
-//        SearchViewControll().favorites=set
+        //update favorites in user defaults
         UserDefaults.standard.set(favorites, forKey: K.favoriteSetName)
-//        if !set.isEmpty{
-//            UserDefaults.standard.set(set, forKey: K.favoriteSetName)
-//        }
+        NSLog("Update Favorite in user defaults")
     }
-
-
+    
+    
 }
 

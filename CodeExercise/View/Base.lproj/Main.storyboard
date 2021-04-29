@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9B6-SE-zM5">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -21,7 +22,7 @@
                             <view tag="-2" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="nEP-3q-YNu">
                                 <rect key="frame" x="0.0" y="44" width="414" height="121"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLO-6j-iAy">
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLO-6j-iAy">
                                         <rect key="frame" x="8" y="10" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="5vE-OJ-hd8"/>
@@ -127,6 +128,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="z2r-cL-Ban"/>
                     <connections>
+                        <outlet property="backButton" destination="pLO-6j-iAy" id="iOh-Os-3E5"/>
                         <outlet property="favoriteButton" destination="TeO-jl-Akf" id="Tos-BX-Iwa"/>
                         <outlet property="imageView" destination="qfc-Ve-Ujh" id="TsS-nJ-o4p"/>
                         <outlet property="locationLabel" destination="1jK-YD-DLz" id="O6c-vd-MVF"/>
