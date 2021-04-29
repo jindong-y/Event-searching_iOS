@@ -8,8 +8,8 @@
 import Foundation
 
 protocol EventManagerDelegete {
-    func didUpdate(eventManager: EventManager, events:[event])
-    func didUpdate(_ events:[event])
+//    func didUpdate(eventManager: EventManager, eventJson:[eventJson])
+    func didUpdate(_ eventJson:[eventJson])
     func didFailUpdate(error: Error)
 }
 

@@ -8,21 +8,22 @@
 import Foundation
 
 struct EventsResponse: Codable {
-    let events: [event]
+    let events: [eventJson]
 }
 
-struct event: Codable {
+struct eventJson: Codable {
+    let id:Int
     let short_title: String
-    let venue: venue
+    let venue: venueJson
     let datetime_local:String
     let url: String
-    let performers:[performers]
+    let performers:[performersJson]
 }
 
-struct venue: Codable {
+struct venueJson: Codable {
     let display_location: String
 }
 
-struct performers: Codable {
+struct performersJson: Codable {
     let image:String
 }

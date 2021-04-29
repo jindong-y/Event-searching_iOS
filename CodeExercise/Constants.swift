@@ -10,4 +10,15 @@ struct K {
 
     static let cellIdenifier="EventReusableCell"
     static let cellNibName="ResultCell"
+    
+    static let favoriteSetName="FavoritesSet"
+
+    struct segue {
+        static let searchToEvent="goToEvent"
+
+    }
+    struct img {
+        static let favorite="suit.heart.fill"
+        static let unfavorite="suit.heart"
+    }
 }
