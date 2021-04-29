@@ -67,7 +67,7 @@ class EventViewController: UIViewController {
         imageView.load(urlString: imageUrl!)
         locationLabel.text=location
         let displayFormatter=DateFormatter()
-        displayFormatter.dateFormat="EEEE, dd MMM yyyy \nhh:mm a"
+        displayFormatter.dateFormat="EEEE, dd MMM yyyy hh:mm a"
         if time != nil{
             timeLabel.text="\(displayFormatter.string(from: time!))"
         }

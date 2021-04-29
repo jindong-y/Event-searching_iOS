@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol EventManagerDelegete {
+protocol EventManagerDelegate {
 //    func didUpdate(eventManager: EventManager, eventJson:[eventJson])
     func didUpdate(_ eventJson:[eventJson])
     func didFailUpdate(error: Error)
@@ -22,7 +22,7 @@ struct EventManager {
     
 //    var response: EventsResponse?
     
-    var delegate: EventManagerDelegete?
+    var delegate: EventManagerDelegate?
     
     
     func fetchEvents(query:String,page:Int) -> Void {

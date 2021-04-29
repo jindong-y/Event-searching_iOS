@@ -30,7 +30,7 @@ class SearchViewControll: UIViewController{
         eventManager.delegate=self
         
         
-        //register tableveiw cell
+        //register tableview cell
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdenifier)
         //tableView auto sizing
         self.tableView.rowHeight = UITableView.automaticDimension
@@ -138,9 +138,9 @@ extension SearchViewControll: UITableViewDataSource{
     
 }
 
-// MARK: EventManager Delegete
+// MARK: EventManager Delegate
 
-extension SearchViewControll: EventManagerDelegete{
+extension SearchViewControll: EventManagerDelegate{
 
     //update var events after fetch
     func didUpdate(_ eventJson:[eventJson]){
@@ -172,7 +172,7 @@ extension SearchViewControll: UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)
-        //inital page to 1
+        //initial page to 1
         self.page=1
         eventManager.fetchEvents(query: searchBar.text!, page: 1)
         
@@ -184,7 +184,7 @@ extension SearchViewControll: UISearchBarDelegate{
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
-        //inital page to 1
+        //initial page to 1
         self.page=1
         eventManager.fetchEvents(query: searchBar.text!, page: 1)
     }
